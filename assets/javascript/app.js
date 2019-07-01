@@ -17,7 +17,7 @@ $(document).ready(function () {
         question: "What is the name for a dog created by crossing a Labrador Retriever and a Poodle?",
         answers: ["Labradoodle", "Labra - Poo", "Poo - Lab", "DoraPoodle"],
         correctAnswer: "Labradoodle"
-    },{
+    }, {
         question: "The Chihuahua is a breed of dog believed to originate from what country?",
         answers: ["France", "Spain", "United States", "Mexico"],
         correctAnswer: "Mexico"
@@ -90,34 +90,38 @@ $(document).ready(function () {
         finished: "Alright! Let's see how you did."
 
     }
+});
 
 
-    // Next we create a Start Button to Activate Game when Clicked
-    // Player is Given a Random Trivia Question and Timer begins
-    // If Player guesses right answer before time expires they go to the next question
-    // Else player gets incorrect. Time Resets on each Question 
-    // 4 Correct Answers wins the Game
+// Next we create a Start Button to Activate Game when Clicked
+// Player is Given a Random Trivia Question and Timer begins
+// If Player guesses right answer before time expires they go to the next question
+// Else player gets incorrect. Time Resets on each Question 
+// 4 Correct Answers wins the Game
 
-    //Start Game Function
+//Start Game Function
 
-    // var startGame = funtion() {
+// var startGame = funtion() {
 
-    // };
-
-
-    // var answerCheck = function() {
-
-    // };
+// };
 
 
-    // var results = function() {
+// var answerCheck = function() {
+
+// };
 
 
-    // };
+// var results = function() {
 
 
-    // $(document).on("click", "#start", function () {
-    //     console.log('Start button being clicked!!');
-    //     $("#randomQuestion").append("<h4>Questions from object to show here randomly (looped)</h4>");
-        
-    // }
+// };
+
+
+$(document).on("click", "#start", function () {
+    console.log('Start button being clicked!!');
+    $("#randomQuestion").append("<h4>Questions from object to show here randomly (looped)</h4>");
+    $("#timer").show();
+    $("#randomQuestion").show();
+    $("#answers").show();
+
+});

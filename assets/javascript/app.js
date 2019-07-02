@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var pageLoad = function () {
         $("#timer").hide();
-        $("#randomQuestion").hide();
+        $("#currentQuestion").hide();
         $("#answers").hide();
     }
 
@@ -155,23 +155,18 @@ function showCountdown() {
 }
 
 
+// Count will keep track of the index of the currently displayed Question.
+var count = 0;
 
+function nextQuestion() {
+    //  TODO: Increment the count by 1.
+    var i = 0; i < triviaBank.length[i]; count++;
 
-//     function countdown(){
-//         seconds = 33;
-//         $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
-//         answered = true;
-//         //sets timer to go down
-//         time = setInterval(showCountdown, 1000);
-//     }
+}
+console.log(nextQuestion);
 
-//     function showCountdown(){
-//         seconds--;
-//         $('#timeLeft').html('<h3>Time Remaining: ' + seconds + '</h3>');
-//         if(seconds < 1){
-//             clearInterval(time);
-//             answered = false;
-//             answerPage();
-//         }
-//     }
-// }    
+$("#randomQuestion")
+
+// Set Each Answer in Index to Assigned Button. If Correct Button Chosen say Correct,  if not say incorrect
+
+// Set Results Function to Tally Score 

@@ -72,6 +72,9 @@ $(document).ready(function () {
 
     }];
 
+    console.log(triviaBank);
+
+
 
     var gifArray = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"];
 
@@ -119,9 +122,56 @@ $(document).ready(function () {
 
 $(document).on("click", "#start", function () {
     console.log('Start button being clicked!!');
+    $("#start").hide();
+    $("#heading").hide();
     $("#randomQuestion").append("<h4>Questions from object to show here randomly (looped)</h4>");
     $("#timer").show();
     $("#randomQuestion").show();
     $("#answers").show();
+    countdown();
+
+
 
 });
+
+
+
+var countdown = function () {
+    seconds = 33;
+    $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
+    answered = true;
+    //sets timer to go down
+    time = setInterval(showCountdown, 1000);
+
+}
+function showCountdown() {
+    seconds--;
+    $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
+    if (seconds < 1) {
+        clearInterval(time);
+        answered = false;
+        answerPage();
+    }
+}
+
+
+
+
+//     function countdown(){
+//         seconds = 33;
+//         $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
+//         answered = true;
+//         //sets timer to go down
+//         time = setInterval(showCountdown, 1000);
+//     }
+
+//     function showCountdown(){
+//         seconds--;
+//         $('#timeLeft').html('<h3>Time Remaining: ' + seconds + '</h3>');
+//         if(seconds < 1){
+//             clearInterval(time);
+//             answered = false;
+//             answerPage();
+//         }
+//     }
+// }    

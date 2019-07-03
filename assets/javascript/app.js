@@ -1,15 +1,6 @@
-$(document).ready(function () {
+var triviaBank = [
 
-    var pageLoad = function () {
-        $("#timer").hide();
-        $("#currentQuestion").hide();
-        $("#answers").hide();
-    }
-
-    pageLoad();
-
-
-    var triviaBank = [{
+    {
 
 
         // For our Trivia Bank we created an Object inside of an Array.
@@ -72,67 +63,92 @@ $(document).ready(function () {
 
     }];
 
-    console.log(triviaBank);
+console.log(triviaBank);
 
 
 
-    var gifArray = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"];
+var gifArray = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"];
 
-    var currentQuestion;
-    var correctAnswer;
-    var incorrectAnswer;
-    var unanswered;
-    var seconds;
-    var time;
-    var answered;
-    var userSelect;
-    var messages = {
-        correct: "You got it right, Totally!",
-        incorrect: "No, that's Totally wrong.",
-        endTime: "You're Out of time!",
-        finished: "Alright! Let's see how you did."
+var currentQuestion;
+var correctAnswer;
+var incorrectAnswer;
+var unanswered;
+var seconds;
+var time;
+var answered;
+var userSelect;
+var messages = {
+    correct: "You got it right, Totally!",
+    incorrect: "No, that's Totally wrong.",
+    endTime: "You're Out of time!",
+    finished: "Alright! Let's see how you did."
 
+}
+
+
+
+
+
+
+$(document).ready(function () {
+
+    var pageLoad = function () {
+        $("#timer").hide();
+        $("#nextQuestion").hide();
+        $("#answers").hide();
     }
-});
 
-
-// Next we create a Start Button to Activate Game when Clicked
-// Player is Given a Random Trivia Question and Timer begins
-// If Player guesses right answer before time expires they go to the next question
-// Else player gets incorrect. Time Resets on each Question 
-// 4 Correct Answers wins the Game
-
-//Start Game Function
-
-// var startGame = funtion() {
-
-// };
-
-
-// var answerCheck = function() {
-
-// };
-
-
-// var results = function() {
-
-
-// };
-
-
-$(document).on("click", "#start", function () {
-    console.log('Start button being clicked!!');
-    $("#start").hide();
-    $("#heading").hide();
-    $("#randomQuestion").append("<h4>Questions from object to show here randomly (looped)</h4>");
-    $("#timer").show();
-    $("#randomQuestion").show();
-    $("#answers").show();
-    countdown();
+    pageLoad();
 
 
 
-});
+
+
+
+
+
+
+},
+    // Next we create a Start Button to Activate Game when Clicked
+    // Player is Given a 1st Trivia Question in Array and Timer begins
+    // If Player guesses right answer before time expires they go to the next question
+    // If player guesses right answer or time expires Picture is shown with Correct Answer.
+    // Else player gets incorrect. Time Resets on each Question 
+    // Results are shown at the end of the game.
+
+    //Start Game Function
+
+    // var startGame = funtion() {
+
+    // };
+
+
+    // var answerCheck = function() {
+
+    // };
+
+
+    // var results = function() {
+
+
+    // };
+
+
+    $(document).on("click", "#start", function () {
+        console.log('Start button being clicked!!');
+        $("#start").hide();
+        $("#heading").hide();
+        $("#nextQuestion").append("<h4>Questions from object to show here in Order (looped)</h4>");
+        $("#timer").show();
+        $("#nextQuestion").show();
+        $("#answers").show();
+        countdown();
+        nextQuestion(count);
+
+
+
+
+    }));
 
 
 
@@ -150,7 +166,7 @@ function showCountdown() {
     if (seconds < 1) {
         clearInterval(time);
         answered = false;
-        answerPage();
+        // answerPage();
     }
 }
 
@@ -158,15 +174,36 @@ function showCountdown() {
 // Count will keep track of the index of the currently displayed Question.
 var count = 0;
 
-function nextQuestion() {
+function nextQuestion(int) {
     //  TODO: Increment the count by 1.
-    var i = 0; i < triviaBank.length[i]; count++;
+    for (i = 0; i < triviaBank[int].answers.length; i++) {
+
+        var ansButton = $("<button>")
+        ansButton.html(triviaBank[int].answers[i]);
+        $("#answers").append(ansButton)
+    }
+
+
+
+
+
+
+    // $('#nextQuestion').text(triviaBank[int].question);
+    // $("#ansA").text(triviaBank[int].answers[0]);
+    // $("#ansB").text(triviaBank[int].answers[1]);
+    // $("#ansC").text(triviaBank[int].answers[2]);
+    // $("#ansD").text(triviaBank[int].answers[3]);
+    count++
 
 }
-console.log(nextQuestion);
+newFunction();
 
-$("#randomQuestion")
+$("#currentQuestion")
 
+
+function newFunction() {
+    console.log(nextQuestion);
+}
 // Set Each Answer in Index to Assigned Button. If Correct Button Chosen say Correct,  if not say incorrect
 
 // Set Results Function to Tally Score 

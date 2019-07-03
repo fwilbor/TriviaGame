@@ -184,6 +184,10 @@ function nextQuestion(int) {
         $("#answers").append(ansButton)
     }
 
+    // PsuedoCode Buttons to click with correct button choice only one button = True (correct) all 
+    // other buttons = False
+    // Buttons must match String in Order to be True
+
 
 
 

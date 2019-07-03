@@ -178,6 +178,7 @@ function nextQuestion(int) {
     //  TODO: Increment the count by 1.
     for (i = 0; i < triviaBank[int].answers.length; i++) {
 
+        $("#nextQuestion").html(triviaBank[int].question);
         var ansButton = $("<button>")
         ansButton.html(triviaBank[int].answers[i]);
         $("#answers").append(ansButton)

@@ -91,11 +91,15 @@ var messages = {
 
 
 $(document).ready(function () {
+    $(document).on("click", "#answers", function() {
+        console.log($(this).attr('data-name'))
+    })
 
     var pageLoad = function () {
         $("#timer").hide();
         $("#nextQuestion").hide();
         $("#answers").hide();
+       
     }
 
     pageLoad();
@@ -144,6 +148,7 @@ $(document).ready(function () {
         $("#answers").show();
         countdown();
         nextQuestion(count);
+        var correctAnswer;
 
 
 
@@ -152,13 +157,15 @@ $(document).ready(function () {
 
 
 
+
+
 var countdown = function () {
-    seconds = 33;
+    seconds = 3;
     $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
     answered = true;
     //sets timer to go down
     time = setInterval(showCountdown, 1000);
-
+// If statement goes in countdown function 
 }
 function showCountdown() {
     seconds--;
@@ -177,26 +184,41 @@ var count = 0;
 
 function nextQuestion(int) {
     //  TODO: Increment the count by 1.
+    $("#nextQuestion").html(triviaBank[int].question);
+
     for (i = 0; i < triviaBank[int].answers.length; i++) {
 
-        $("#nextQuestion").html(triviaBank[int].question);
+
         var ansButton = $("<button>")
         ansButton.addClass("btn-answer");
         //adds a data attribute
         ansButton.attr("data-name", triviaBank[int].answers[i]);
         ansButton.html(triviaBank[int].answers[i]);
         $("#answers").append(ansButton)
+
     }
+
+    correctAnswer = triviaBank[int].correctAnswer;
+    console.log(correctAnswer);
+    $(".btn-answer").on("click", function () {
+
+        console.log("I've been Clicked, Let's Get it!")
+    });
+
+    $
 
     if (seconds === 0) {
         stopTimer();
-        nextQuestion(int);
+        nextQuestion(count);
     }
+    count++
 }
 
 function stopTimer() {
     clearInterval(intervalId);
     nextQuestion();
+
+
 
 
 
@@ -214,7 +236,7 @@ function stopTimer() {
     // $("#ansB").text(triviaBank[int].answers[1]);
     // $("#ansC").text(triviaBank[int].answers[2]);
     // $("#ansD").text(triviaBank[int].answers[3]);
-    count++
+
 
 }
 newFunction();

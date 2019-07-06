@@ -168,6 +168,7 @@ function showCountdown() {
         answered = false;
         // answerPage();
     }
+
 }
 
 
@@ -180,9 +181,24 @@ function nextQuestion(int) {
 
         $("#nextQuestion").html(triviaBank[int].question);
         var ansButton = $("<button>")
+        ansButton.addClass("btn-answer");
+        //adds a data attribute
+        ansButton.attr("data-name", triviaBank[int].answers[i]);
         ansButton.html(triviaBank[int].answers[i]);
         $("#answers").append(ansButton)
     }
+
+    if (seconds === 0) {
+        stopTimer();
+        nextQuestion(int);
+    }
+}
+
+function stopTimer() {
+    clearInterval(intervalId);
+    nextQuestion();
+
+
 
     // PsuedoCode Buttons to click with correct button choice only one button = True (correct) all 
     // other buttons = False

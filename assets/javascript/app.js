@@ -70,8 +70,8 @@ console.log(triviaBank);
 var gifArray = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"];
 
 var currentQuestion;
-var correctAnswer;
-var incorrectAnswer;
+var correctlyAnswered = 0;
+var incorrectlyAnswered = 0;
 var unanswered;
 var seconds;
 var time;
@@ -89,23 +89,40 @@ var messages = {
 
 
 
-
 $(document).ready(function () {
-    $(document).on("click", "#answers", function() {
-        console.log($(this).attr('data-name'))
+    $(document).on("click", "#answers", function () {
+        // console.log($(this).attr('data-name'))
     })
 
     var pageLoad = function () {
         $("#timer").hide();
         $("#nextQuestion").hide();
         $("#answers").hide();
-       
+
     }
 
     pageLoad();
 
+    // When a user clicks a check box then delete the specific content
+    // (NOTE: Pay attention to the unusual syntax here for the click event.
+    // Because we are creating click events on "dynamic" content, we can't just use the usual "on" "click" syntax.)
+    $(document.body).on("click", ".btn-answer", function () {
 
+        // Get the number of the button from its data attribute and hold in a variable called clickButton
+        var clickButton = $(this).attr("data-name");
+        console.log(clickButton);
+        if (clickButton === correctAnswer) {
+            alert("You Got it Right!")
+            correctlyAnswered++;
 
+        } else {
+            alert("You got it Wrong!")
+            incorrectlyAnswered++;
+        }
+        console.log(correctlyAnswered);
+        console.log(incorrectlyAnswered);
+        nextQuestion(count)
+    });
 
 
 
@@ -138,6 +155,15 @@ $(document).ready(function () {
     // };
 
 
+
+
+    //Create Start Button to Activate Game when Clicked
+    // Player is given the 1st Trivia Question in triviaBank Array and Timer begins
+    // If Player guesses right answer before time expires they go to the next question
+    // If player guesses right answer or time expires Picture is shown with Correct Answer.
+    // Else player gets incorrect. Time Resets on each Question 
+    // Results are shown at the end of the game.
+
     $(document).on("click", "#start", function () {
         console.log('Start button being clicked!!');
         $("#start").hide();
@@ -148,7 +174,7 @@ $(document).ready(function () {
         $("#answers").show();
         countdown();
         nextQuestion(count);
-        var correctAnswer;
+
 
 
 
@@ -160,12 +186,13 @@ $(document).ready(function () {
 
 
 var countdown = function () {
-    seconds = 3;
+    seconds = 10;
     $('#timer').html('<h3>Time Remaining: ' + seconds + '</h3>');
     answered = true;
     //sets timer to go down
     time = setInterval(showCountdown, 1000);
-// If statement goes in countdown function 
+    // If statement goes in countdown function 
+
 }
 function showCountdown() {
     seconds--;
@@ -184,7 +211,13 @@ var count = 0;
 
 function nextQuestion(int) {
     //  TODO: Increment the count by 1.
+
+    countdown();
+    clearInterval(time);
     $("#nextQuestion").html(triviaBank[int].question);
+
+    $("#answers").empty();
+    correctAnswer = triviaBank[int].correctAnswer
 
     for (i = 0; i < triviaBank[int].answers.length; i++) {
 
@@ -196,27 +229,17 @@ function nextQuestion(int) {
         ansButton.html(triviaBank[int].answers[i]);
         $("#answers").append(ansButton)
 
+
+
     }
 
-    correctAnswer = triviaBank[int].correctAnswer;
-    console.log(correctAnswer);
-    $(".btn-answer").on("click", function () {
-
-        console.log("I've been Clicked, Let's Get it!")
-    });
-
-    $
-
-    if (seconds === 0) {
-        stopTimer();
-        nextQuestion(count);
-    }
     count++
 }
 
+
 function stopTimer() {
     clearInterval(intervalId);
-    nextQuestion();
+
 
 
 
@@ -250,3 +273,10 @@ function newFunction() {
 // Set Each Answer in Index to Assigned Button. If Correct Button Chosen say Correct,  if not say incorrect
 
 // Set Results Function to Tally Score 
+
+var endGame = function() {
+    stopTimer();
+    
+
+
+}

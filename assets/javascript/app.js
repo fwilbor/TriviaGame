@@ -274,9 +274,23 @@ function newFunction() {
 
 // Set Results Function to Tally Score 
 
-var endGame = function() {
+var endGame = function () {
     stopTimer();
-    
+
+
+
+}
+
+if (triviaBank === (triviaBank).length || seconds === 0) {
+
+    // adds results of game (correct, incorrect, unanswered) to the page
+    $("#answerPage")
+        .html('<h3>Thank you for playing!</h3>' +
+            '<p>Correct: ' + correctlyAnswered + '</p>' +
+            '<p>Incorrect: ' + incorrectlyAnswered + '</p>' +
+            '<p>Please play again!</p>');
+
+
 
 
 }
